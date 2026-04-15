@@ -1,0 +1,2 @@
+# GoldToken
+GoldToken
