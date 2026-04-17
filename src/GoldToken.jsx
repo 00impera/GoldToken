@@ -31,11 +31,11 @@ const MONAD_MAINNET = defineChain({
 const client = createThirdwebClient({ clientId: CLIENT_ID });
 
 const ERC20_ABI = [
-  { inputs: [{ name: "account", type: "address" }], name: "balanceOf",   outputs: [{ name: "", type: "uint256" }], stateMutability: "view",        type: "function" },
-  { inputs: [],                                      name: "name",        outputs: [{ name: "", type: "string"  }], stateMutability: "view",        type: "function" },
-  { inputs: [],                                      name: "symbol",      outputs: [{ name: "", type: "string"  }], stateMutability: "view",        type: "function" },
-  { inputs: [],                                      name: "totalSupply", outputs: [{ name: "", type: "uint256" }], stateMutability: "view",        type: "function" },
-  { inputs: [],                                      name: "decimals",    outputs: [{ name: "", type: "uint8"   }], stateMutability: "view",        type: "function" },
+  { inputs: [{ name: "account", type: "address" }], name: "balanceOf",   outputs: [{ name: "", type: "uint256" }], stateMutability: "view",     type: "function" },
+  { inputs: [],                                      name: "name",        outputs: [{ name: "", type: "string"  }], stateMutability: "view",     type: "function" },
+  { inputs: [],                                      name: "symbol",      outputs: [{ name: "", type: "string"  }], stateMutability: "view",     type: "function" },
+  { inputs: [],                                      name: "totalSupply", outputs: [{ name: "", type: "uint256" }], stateMutability: "view",     type: "function" },
+  { inputs: [],                                      name: "decimals",    outputs: [{ name: "", type: "uint8"   }], stateMutability: "view",     type: "function" },
   {
     inputs: [{ name: "to", type: "address" }, { name: "amount", type: "uint256" }],
     name: "transfer",
@@ -84,7 +84,6 @@ function shortAddr(addr) {
   return addr.slice(0, 6) + "\u2026" + addr.slice(-4);
 }
 
-/* ─── VIBRATE HELPER ──────────────────────────────────────────── */
 function vibrate() {
   if (typeof navigator !== "undefined" && navigator.vibrate) {
     navigator.vibrate([40, 15, 40, 15, 20]);
@@ -108,9 +107,10 @@ function GoldCoinLogo({ size }) {
           <stop offset="100%" stopColor="#7A5500" />
         </radialGradient>
         <radialGradient id={"ig" + s} cx="40%" cy="35%" r="60%">
-          <stop offset="0%"   stopColor="#E8B820" />
-          <stop offset="55%"  stopColor="#B8860B" />
-          <stop offset="100%" stopColor="#8B6500" />
+          <stop offset="0%"   stopColor="#00eaff" />
+          <stop offset="40%"  stopColor="#a259ff" />
+          <stop offset="80%"  stopColor="#ff6ec7" />
+          <stop offset="100%" stopColor="#B8860B" />
         </radialGradient>
         <filter id={"ng" + s} x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation={s * 0.04} result="blur" />
@@ -120,38 +120,38 @@ function GoldCoinLogo({ size }) {
 
       <circle cx={cx + s * 0.02} cy={cy + s * 0.02} r={r} fill="rgba(0,0,0,0.45)" />
       <circle cx={cx} cy={cy} r={r} fill={"url(#cg" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r - s * 0.01} fill="none" stroke="#C8960C" strokeWidth={s * 0.012} strokeDasharray={s * 0.025 + " " + s * 0.018} />
+      <circle cx={cx} cy={cy} r={r - s * 0.01} fill="none" stroke="#a259ff" strokeWidth={s * 0.012} strokeDasharray={s * 0.025 + " " + s * 0.018} />
       <circle cx={cx} cy={cy} r={r2} fill={"url(#ig" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#39FF14" strokeWidth={s * 0.05}  opacity="0.35" filter={"url(#ng" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#39FF14" strokeWidth={s * 0.025} opacity="1" />
+      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#00eaff" strokeWidth={s * 0.05}  opacity="0.35" filter={"url(#ng" + s + ")"} />
+      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#00eaff" strokeWidth={s * 0.025} opacity="1" />
 
       {s >= 60 && (
         <>
-          <line x1={cx - r3} y1={cy - r3 * 0.3} x2={cx + r3} y2={cy - r3 * 0.3} stroke="#39FF14" strokeWidth={s * 0.008} opacity="0.2" />
-          <line x1={cx - r3} y1={cy + r3 * 0.3} x2={cx + r3} y2={cy + r3 * 0.3} stroke="#39FF14" strokeWidth={s * 0.008} opacity="0.2" />
-          <line x1={cx - r3 * 0.3} y1={cy - r3}  x2={cx - r3 * 0.3} y2={cy + r3}  stroke="#39FF14" strokeWidth={s * 0.008} opacity="0.2" />
-          <line x1={cx + r3 * 0.3} y1={cy - r3}  x2={cx + r3 * 0.3} y2={cy + r3}  stroke="#39FF14" strokeWidth={s * 0.008} opacity="0.2" />
-          <circle cx={cx - r3 * 0.3} cy={cy - r3 * 0.3} r={s * 0.018} fill="#39FF14" opacity="0.4" />
-          <circle cx={cx + r3 * 0.3} cy={cy + r3 * 0.3} r={s * 0.018} fill="#39FF14" opacity="0.4" />
+          <line x1={cx - r3} y1={cy - r3 * 0.3} x2={cx + r3} y2={cy - r3 * 0.3} stroke="#a259ff" strokeWidth={s * 0.008} opacity="0.3" />
+          <line x1={cx - r3} y1={cy + r3 * 0.3} x2={cx + r3} y2={cy + r3 * 0.3} stroke="#a259ff" strokeWidth={s * 0.008} opacity="0.3" />
+          <line x1={cx - r3 * 0.3} y1={cy - r3}  x2={cx - r3 * 0.3} y2={cy + r3}  stroke="#ff6ec7" strokeWidth={s * 0.008} opacity="0.3" />
+          <line x1={cx + r3 * 0.3} y1={cy - r3}  x2={cx + r3 * 0.3} y2={cy + r3}  stroke="#ff6ec7" strokeWidth={s * 0.008} opacity="0.3" />
+          <circle cx={cx - r3 * 0.3} cy={cy - r3 * 0.3} r={s * 0.018} fill="#00eaff" opacity="0.6" />
+          <circle cx={cx + r3 * 0.3} cy={cy + r3 * 0.3} r={s * 0.018} fill="#ff6ec7" opacity="0.6" />
         </>
       )}
 
-      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#39FF14" strokeWidth={s * 0.018} opacity="0.4" filter={"url(#ng" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#39FF14" strokeWidth={s * 0.012} opacity="0.7" />
+      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#a259ff" strokeWidth={s * 0.018} opacity="0.4" filter={"url(#ng" + s + ")"} />
+      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#a259ff" strokeWidth={s * 0.012} opacity="0.7" />
 
-      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#39FF14" opacity="0.3" filter={"url(#ng" + s + ")"}>$</text>
-      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#39FF14" opacity="0.97">$</text>
+      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#00eaff" opacity="0.3" filter={"url(#ng" + s + ")"}>$</text>
+      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#00eaff" opacity="0.97">$</text>
 
       {s >= 80 && (
         <>
-          <text x={cx} y={cy - r + s * 0.09}  textAnchor="middle" fontSize={s * 0.07}  fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#FFE066" letterSpacing={s * 0.015}>GOLD</text>
-          <text x={cx} y={cy + r - s * 0.04}  textAnchor="middle" fontSize={s * 0.065} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#FFE066" letterSpacing={s * 0.012}>TOKEN</text>
-          <circle cx={cx - r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#39FF14" opacity="0.8" />
-          <circle cx={cx + r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#39FF14" opacity="0.8" />
+          <text x={cx} y={cy - r + s * 0.09}  textAnchor="middle" fontSize={s * 0.07}  fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#ffe066" letterSpacing={s * 0.015}>GOLD</text>
+          <text x={cx} y={cy + r - s * 0.04}  textAnchor="middle" fontSize={s * 0.065} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#ffe066" letterSpacing={s * 0.012}>TOKEN</text>
+          <circle cx={cx - r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#00eaff" opacity="0.9" />
+          <circle cx={cx + r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#ff6ec7" opacity="0.9" />
         </>
       )}
 
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,240,150,0.25)" strokeWidth={s * 0.03} />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(162,89,255,0.3)" strokeWidth={s * 0.03} />
     </svg>
   );
 }
@@ -159,9 +159,9 @@ function GoldCoinLogo({ size }) {
 /* ─── MATRIX PARTICLES ────────────────────────────────────────── */
 function MatrixParticles() {
   var items = [];
-  for (var i = 0; i < 22; i++) {
+  for (var i = 0; i < 26; i++) {
     items.push(
-      <div key={i} className={"mp mp" + (i % 4)} style={{
+      <div key={i} className={"mp mp" + (i % 5)} style={{
         left: ((i * 41 + 7) % 100) + "%",
         animationDelay:    ((i * 0.6) % 7) + "s",
         animationDuration: (5 + (i * 0.4) % 7) + "s",
@@ -172,45 +172,79 @@ function MatrixParticles() {
 }
 
 /* ─── BUY GOLD WITH CARD ──────────────────────────────────────── */
-// Uses thirdweb BuyWidget (replaces deprecated pay.thirdweb.com/buy URL)
 function BuyGoldWithCard({ account, sym }) {
   const [showWidget, setShowWidget] = useState(false);
-
   if (!account) return null;
 
   return (
     <div style={{ marginTop: 12, marginBottom: 4 }}>
       {!showWidget ? (
-        <button
-          className="btn-buy"
-          onClick={() => { vibrate(); setShowWidget(true); }}
-        >
+        <button className="btn-orb" onClick={() => { vibrate(); setShowWidget(true); }}>
           💳 BUY {sym || "GOLD"} WITH CARD
         </button>
       ) : (
         <>
-          <button
-            className="btn-outline"
-            style={{ marginTop: 0, marginBottom: 12, fontSize: 10 }}
-            onClick={() => setShowWidget(false)}
-          >
+          <button className="btn-outline" style={{ marginTop: 0, marginBottom: 12, fontSize: 10 }} onClick={() => setShowWidget(false)}>
             ✕ CLOSE
           </button>
-          <div style={{
-            borderRadius: 12,
-            overflow: "hidden",
-            border: "1px solid rgba(57,255,20,0.28)",
-            background: "rgba(5,10,14,0.95)",
-          }}>
-            <BuyWidget
-              client={client}
-              chain={MONAD_MAINNET}
-              tokenAddress={PROXY_ADDRESS}
-              theme="dark"
-            />
+          <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid rgba(162,89,255,0.4)", background: "rgba(5,10,14,0.95)" }}>
+            <BuyWidget client={client} chain={MONAD_MAINNET} tokenAddress={PROXY_ADDRESS} theme="dark" />
           </div>
         </>
       )}
+    </div>
+  );
+}
+
+/* ─── FOOTER BANNER ───────────────────────────────────────────── */
+function FooterBanner() {
+  return (
+    <div className="footer-banner">
+      <div className="footer-banner-inner">
+        {/* MonadVision */}
+        <a href={"https://monadvision.com/token/" + PROXY_ADDRESS} target="_blank" rel="noopener noreferrer" className="banner-link banner-mv">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M2 12C2 12 6 5 12 5s10 7 10 7-4 7-10 7S2 12 2 12z" stroke="#00eaff" strokeWidth="1.8"/>
+            <circle cx="12" cy="12" r="3" fill="#00eaff" opacity="0.5"/>
+          </svg>
+          <span>MONADVISION</span>
+          <span className="banner-sub">Token Analytics</span>
+        </a>
+
+        <div className="banner-divider" />
+
+        {/* Twitter / X */}
+        <a href="https://x.com/bnbgold277983" target="_blank" rel="noopener noreferrer" className="banner-link banner-tw">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#a259ff">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>@bnbgold277983</span>
+          <span className="banner-sub">Follow on X</span>
+        </a>
+
+        <div className="banner-divider" />
+
+        {/* Discord */}
+        <a href="https://discord.com/channels/1316093079090106472" target="_blank" rel="noopener noreferrer" className="banner-link banner-dc">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ff6ec7">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.99 19.99 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          <span>JOIN DISCORD</span>
+          <span className="banner-sub">Community</span>
+        </a>
+
+        <div className="banner-divider" />
+
+        {/* Contract address */}
+        <div className="banner-link banner-contract" style={{ cursor: "default" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="#ffe066" strokeWidth="1.8"/>
+            <path d="M7 8h10M7 12h6M7 16h8" stroke="#ffe066" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          <span style={{ fontSize: 9, letterSpacing: 1 }}>{PROXY_ADDRESS.slice(0, 10)}…{PROXY_ADDRESS.slice(-6)}</span>
+          <span className="banner-sub">ERC-20 · Monad 143</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -267,11 +301,11 @@ function GoldApp() {
     setSwapError(null);
     setSwapQuote(null);
     try {
-      var destAsset    = "nep141:monad-" + PROXY_ADDRESS.toLowerCase() + ".omft.near";
-      var originToken  = swapTokens.find(function (t) { return t.assetId === swapOrigin; });
-      var decimals     = originToken && originToken.decimals ? originToken.decimals : 18;
-      var amountRaw    = (BigInt(Math.round(parseFloat(swapAmount) * Math.pow(10, decimals)))).toString();
-      var quote        = await getNearIntentsQuote({ originAsset: swapOrigin, destinationAsset: destAsset, amount: amountRaw, recipient: account.address });
+      var destAsset   = "nep141:monad-" + PROXY_ADDRESS.toLowerCase() + ".omft.near";
+      var originToken = swapTokens.find(function (t) { return t.assetId === swapOrigin; });
+      var decimals    = originToken && originToken.decimals ? originToken.decimals : 18;
+      var amountRaw   = (BigInt(Math.round(parseFloat(swapAmount) * Math.pow(10, decimals)))).toString();
+      var quote       = await getNearIntentsQuote({ originAsset: swapOrigin, destinationAsset: destAsset, amount: amountRaw, recipient: account.address });
       setSwapQuote(quote);
     } catch (e) {
       setSwapError("Could not fetch quote. Try a different token or amount.");
@@ -289,22 +323,33 @@ function GoldApp() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --neon:        #39FF14;
-          --neon-bright: #6FFF45;
-          --neon-dim:    rgba(57,255,20,0.55);
-          --neon-faint:  rgba(57,255,20,0.10);
-          --neon-glow:   rgba(57,255,20,0.20);
-          --black:       #050A0E;
-          --navy:        #080D18;
-          --navy-mid:    #0C1422;
-          --navy-card:   #0a2e12;
-          --navy-border: rgba(57,255,20,0.28);
-          --gold:        #C8960C;
-          --gold-light:  #FFD700;
-          --gold-pale:   #FFE066;
-          --white:       #E8FFF0;
-          --white-dim:   rgba(232,255,240,0.50);
-          --white-faint: rgba(232,255,240,0.20);
+          /* ── ORB PALETTE ── */
+          --orb-blue:     #00eaff;
+          --orb-purple:   #a259ff;
+          --orb-pink:     #ff6ec7;
+          --orb-green:    #39ff14;
+          --orb-yellow:   #ffe066;
+          --orb-orange:   #ffb347;
+          --orb-gradient: linear-gradient(135deg, #00eaff 0%, #a259ff 40%, #ff6ec7 70%, #ffe066 100%);
+          --orb-glow:     0 0 24px #00eaff, 0 0 48px #a259ff, 0 0 80px #ff6ec7;
+
+          /* ── BASE COLORS ── */
+          --neon:         var(--orb-blue);
+          --neon-bright:  #6FFF45;
+          --neon-dim:     rgba(0,234,255,0.55);
+          --neon-faint:   rgba(0,234,255,0.10);
+          --neon-glow:    rgba(162,89,255,0.20);
+          --black:        #050A0E;
+          --navy:         #08091a;
+          --navy-mid:     #0d0d22;
+          --navy-card:    #0a0a1e;
+          --navy-border:  rgba(162,89,255,0.35);
+          --gold:         #C8960C;
+          --gold-light:   #FFD700;
+          --gold-pale:    #FFE066;
+          --white:        #f0eeff;
+          --white-dim:    rgba(240,238,255,0.55);
+          --white-faint:  rgba(240,238,255,0.22);
         }
 
         body { background: var(--black); color: var(--white); font-family: 'Rajdhani', sans-serif; }
@@ -312,23 +357,26 @@ function GoldApp() {
         .app {
           min-height: 100vh;
           background:
-            radial-gradient(ellipse 80% 60% at 10% 0%,  rgba(0,40,10,0.7)  0%, transparent 60%),
-            radial-gradient(ellipse 60% 50% at 90% 100%, rgba(0,30,8,0.5)   0%, transparent 55%),
+            radial-gradient(ellipse 70% 55% at 10% 0%,   rgba(0,20,50,0.85)   0%, transparent 60%),
+            radial-gradient(ellipse 55% 50% at 90% 100%,  rgba(40,0,60,0.75)   0%, transparent 55%),
+            radial-gradient(ellipse 60% 40% at 50% 50%,   rgba(162,89,255,0.07) 0%, transparent 70%),
             var(--black);
           position: relative; overflow: hidden;
         }
 
         .app::before {
           content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none;
-          background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+          background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(162,89,255,0.025) 2px, rgba(162,89,255,0.025) 4px);
         }
 
+        /* ── MATRIX PARTICLES ── */
         .matrix-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .mp { position: absolute; bottom: -10px; border-radius: 2px; animation: mrise linear infinite; }
-        .mp0 { width: 2px; background: var(--neon);  height: 16px; opacity: 0.65; }
-        .mp1 { width: 1px; background: var(--neon);  height: 9px;  opacity: 0.35; }
-        .mp2 { width: 2px; background: #00FF88;      height: 22px; opacity: 0.28; }
-        .mp3 { width: 1px; background: var(--white); height: 6px;  opacity: 0.15; }
+        .mp0 { width: 2px; background: var(--orb-blue);   height: 16px; opacity: 0.6; }
+        .mp1 { width: 1px; background: var(--orb-purple); height: 9px;  opacity: 0.4; }
+        .mp2 { width: 2px; background: var(--orb-pink);   height: 14px; opacity: 0.3; }
+        .mp3 { width: 1px; background: var(--orb-yellow); height: 6px;  opacity: 0.2; }
+        .mp4 { width: 2px; background: var(--orb-green);  height: 20px; opacity: 0.15; }
         @keyframes mrise {
           0%   { transform: translateY(0);      opacity: 0; }
           8%   { opacity: 1; }
@@ -336,20 +384,23 @@ function GoldApp() {
           100% { transform: translateY(-100vh); opacity: 0; }
         }
 
+        /* ── HEADER ── */
         .header {
           position: relative; z-index: 10;
           display: flex; align-items: center; justify-content: space-between;
           padding: 18px 40px;
-          border-bottom: 1px solid var(--navy-border);
-          background: rgba(5,10,14,0.92);
-          backdrop-filter: blur(18px);
-          box-shadow: 0 1px 0 rgba(57,255,20,0.08), 0 4px 24px rgba(0,0,0,0.5);
+          border-bottom: 1px solid rgba(162,89,255,0.3);
+          background: rgba(5,5,18,0.93);
+          backdrop-filter: blur(20px);
+          box-shadow: 0 1px 0 rgba(0,234,255,0.1), 0 4px 30px rgba(162,89,255,0.12);
         }
         .logo { display: flex; align-items: center; gap: 14px; }
         .logo-text {
           font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700;
-          color: var(--neon); letter-spacing: 3px;
-          text-shadow: 0 0 14px rgba(57,255,20,0.55), 0 0 28px rgba(57,255,20,0.25);
+          background: var(--orb-gradient); -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; background-clip: text;
+          letter-spacing: 3px;
+          filter: drop-shadow(0 0 12px rgba(0,234,255,0.5));
         }
         .logo-sub {
           font-size: 9px; color: var(--white-faint); letter-spacing: 4px;
@@ -358,36 +409,38 @@ function GoldApp() {
         .chain-badge {
           display: inline-flex; align-items: center; gap: 7px;
           padding: 5px 16px; border-radius: 20px;
-          background: var(--neon-faint); border: 1px solid rgba(57,255,20,0.25);
-          font-size: 10px; color: var(--neon); letter-spacing: 2px;
+          background: rgba(162,89,255,0.1); border: 1px solid rgba(162,89,255,0.35);
+          font-size: 10px; color: var(--orb-purple); letter-spacing: 2px;
           font-family: 'Orbitron', monospace;
-          box-shadow: inset 0 0 10px rgba(57,255,20,0.06);
+          box-shadow: 0 0 12px rgba(162,89,255,0.15);
         }
         .chain-dot {
           width: 6px; height: 6px; border-radius: 50%;
-          background: var(--neon); box-shadow: 0 0 6px var(--neon);
+          background: var(--orb-blue); box-shadow: 0 0 8px var(--orb-blue);
           animation: pulse 2s infinite;
         }
         @keyframes pulse {
-          0%,100% { opacity: 1;    box-shadow: 0 0 6px var(--neon); }
+          0%,100% { opacity: 1;    box-shadow: 0 0 8px var(--orb-blue); }
           50%      { opacity: 0.35; box-shadow: none; }
         }
 
+        /* ── HERO ── */
         .hero { position: relative; z-index: 5; text-align: center; padding: 52px 20px 30px; }
         .hero-coin { display: flex; justify-content: center; margin-bottom: 22px; }
         .hero-coin svg {
-          filter: drop-shadow(0 0 22px rgba(57,255,20,0.65)) drop-shadow(0 0 6px rgba(200,150,12,0.4));
+          filter: drop-shadow(0 0 28px rgba(0,234,255,0.6)) drop-shadow(0 0 12px rgba(162,89,255,0.5));
           animation: coinFloat 4.5s ease-in-out infinite;
         }
         @keyframes coinFloat {
           0%,100% { transform: translateY(0)    rotate(-1deg); }
-          50%      { transform: translateY(-12px) rotate(1deg);  }
+          50%      { transform: translateY(-14px) rotate(1deg);  }
         }
         .hero-title {
           font-family: 'Orbitron', monospace;
           font-size: clamp(38px, 8vw, 76px); font-weight: 900; letter-spacing: 8px;
-          color: var(--neon);
-          text-shadow: 0 0 20px rgba(57,255,20,0.6), 0 0 50px rgba(57,255,20,0.3), 0 0 100px rgba(57,255,20,0.12);
+          background: var(--orb-gradient); -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; background-clip: text;
+          filter: drop-shadow(0 0 20px rgba(0,234,255,0.4));
         }
         .hero-sub {
           margin-top: 10px; font-size: 12px; letter-spacing: 6px;
@@ -395,87 +448,99 @@ function GoldApp() {
         }
         .hero-divider {
           margin: 26px auto; width: 140px; height: 1px;
-          background: linear-gradient(90deg, transparent, var(--neon), transparent);
-          box-shadow: 0 0 8px rgba(57,255,20,0.4);
+          background: var(--orb-gradient);
+          box-shadow: var(--orb-glow);
         }
 
+        /* ── STATS ── */
         .stats {
           position: relative; z-index: 5;
           display: flex; justify-content: center; flex-wrap: wrap;
           gap: 12px; padding: 0 40px 36px;
         }
         .stat-card {
-          background: linear-gradient(135deg, #0a2e12 0%, #050A0E 100%);
-          border: 1px solid var(--navy-border);
-          border-radius: 10px; padding: 16px 28px; min-width: 160px; text-align: center;
+          background: linear-gradient(135deg, rgba(162,89,255,0.08) 0%, rgba(0,234,255,0.04) 100%);
+          border: 1px solid rgba(162,89,255,0.3);
+          border-radius: 12px; padding: 16px 28px; min-width: 160px; text-align: center;
           transition: border-color .25s, box-shadow .25s, transform .25s;
           position: relative; overflow: hidden;
         }
         .stat-card::before {
           content: ''; position: absolute; inset: 0;
-          background: linear-gradient(135deg, rgba(57,255,20,0.06) 0%, transparent 60%);
+          background: linear-gradient(135deg, rgba(0,234,255,0.06) 0%, rgba(255,110,199,0.04) 100%);
           pointer-events: none;
         }
         .stat-card:hover {
-          border-color: rgba(57,255,20,0.55);
-          box-shadow: 0 0 20px rgba(57,255,20,0.14), 0 0 40px rgba(57,255,20,0.06);
-          transform: translateY(-2px);
+          border-color: rgba(0,234,255,0.6);
+          box-shadow: 0 0 24px rgba(162,89,255,0.2), 0 0 48px rgba(0,234,255,0.08);
+          transform: translateY(-3px);
         }
         .stat-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--white-faint); font-family: 'Orbitron', monospace; }
-        .stat-value { font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 700; color: var(--neon); margin-top: 6px; text-shadow: 0 0 10px rgba(57,255,20,0.35); }
+        .stat-value {
+          font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 700;
+          background: var(--orb-gradient); -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; background-clip: text;
+          margin-top: 6px;
+        }
 
-        .tabs { position: relative; z-index: 5; display: flex; justify-content: center; gap: 4px; padding: 0 20px 22px; }
+        /* ── TABS ── */
+        .tabs { position: relative; z-index: 5; display: flex; justify-content: center; gap: 4px; padding: 0 20px 22px; flex-wrap: wrap; }
         .tab-btn {
           padding: 9px 28px; border-radius: 6px;
-          border: 1px solid var(--navy-border);
+          border: 1px solid rgba(162,89,255,0.3);
           background: transparent; color: var(--white-dim);
           font-family: 'Orbitron', monospace; font-size: 10px;
           letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all .2s;
         }
         .tab-btn.active {
-          background: var(--neon-faint); color: var(--neon);
-          border-color: rgba(57,255,20,0.5);
-          box-shadow: 0 0 14px rgba(57,255,20,0.2), inset 0 0 10px rgba(57,255,20,0.08);
+          background: rgba(162,89,255,0.12); color: var(--orb-blue);
+          border-color: rgba(0,234,255,0.5);
+          box-shadow: 0 0 16px rgba(162,89,255,0.25), inset 0 0 12px rgba(0,234,255,0.06);
         }
-        .tab-btn:not(.active):hover { border-color: var(--neon-dim); color: var(--white); background: rgba(57,255,20,0.04); }
+        .tab-btn:not(.active):hover { border-color: rgba(162,89,255,0.5); color: var(--white); background: rgba(162,89,255,0.06); }
 
-        .panel { position: relative; z-index: 5; max-width: 540px; margin: 0 auto; padding: 0 20px 60px; }
+        /* ── PANEL & CARD ── */
+        .panel { position: relative; z-index: 5; max-width: 540px; margin: 0 auto; padding: 0 20px 40px; }
         .card {
-          background: linear-gradient(135deg, #0a2e12 0%, #050A0E 100%);
-          border: 1px solid var(--navy-border);
+          background: linear-gradient(135deg, rgba(10,8,30,0.95) 0%, rgba(5,5,18,0.98) 100%);
+          border: 1px solid rgba(162,89,255,0.3);
           border-radius: 16px; padding: 28px;
-          box-shadow: 0 4px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(57,255,20,0.08);
+          box-shadow: 0 4px 40px rgba(0,0,0,0.6), 0 0 60px rgba(162,89,255,0.06), inset 0 1px 0 rgba(0,234,255,0.08);
           animation: fadeUp .35s ease;
           position: relative; overflow: hidden;
         }
         .card::before {
           content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(57,255,20,0.4), transparent);
+          background: var(--orb-gradient);
         }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
         .card-title {
           font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700;
-          color: var(--neon); margin-bottom: 22px;
+          color: var(--orb-blue); margin-bottom: 22px;
           display: flex; align-items: center; gap: 10px; letter-spacing: 2px;
-          text-shadow: 0 0 8px rgba(57,255,20,0.4);
+          text-shadow: 0 0 10px rgba(0,234,255,0.5);
         }
-        .card-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(57,255,20,0.4), transparent); }
+        .card-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(162,89,255,0.5), transparent); }
 
+        /* ── BALANCE ── */
         .balance-display {
           text-align: center; padding: 30px 20px;
-          background: rgba(57,255,20,0.05);
-          border-radius: 12px; border: 1px solid rgba(57,255,20,0.15);
+          background: rgba(162,89,255,0.06);
+          border-radius: 12px; border: 1px solid rgba(162,89,255,0.2);
           margin-bottom: 22px;
-          box-shadow: inset 0 0 30px rgba(57,255,20,0.05);
+          box-shadow: inset 0 0 40px rgba(0,234,255,0.04);
         }
         .balance-amount {
-          font-family: 'Orbitron', monospace; font-size: 44px; font-weight: 900; color: var(--neon);
-          text-shadow: 0 0 24px rgba(57,255,20,0.45), 0 0 50px rgba(57,255,20,0.2);
+          font-family: 'Orbitron', monospace; font-size: 44px; font-weight: 900;
+          background: var(--orb-gradient); -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; background-clip: text;
+          filter: drop-shadow(0 0 20px rgba(0,234,255,0.4));
         }
-        .balance-symbol { font-size: 18px; color: var(--neon-dim); margin-left: 8px; font-family: 'Orbitron', monospace; }
+        .balance-symbol { font-size: 18px; color: var(--orb-purple); margin-left: 8px; font-family: 'Orbitron', monospace; }
         .balance-addr   { font-size: 11px; color: var(--white-faint); margin-top: 8px; letter-spacing: 1px; font-family: monospace; }
 
+        /* ── FIELDS ── */
         .field { margin-bottom: 14px; }
         .field label {
           display: block; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
@@ -483,16 +548,17 @@ function GoldApp() {
         }
         .field input, .field select {
           width: 100%; padding: 11px 14px; border-radius: 8px;
-          background: rgba(5,10,14,0.85); border: 1px solid var(--navy-border);
+          background: rgba(5,5,18,0.9); border: 1px solid rgba(162,89,255,0.3);
           color: var(--white); font-family: 'Rajdhani', sans-serif; font-size: 15px;
           outline: none; transition: border-color .2s, box-shadow .2s;
         }
         .field input:focus, .field select:focus {
-          border-color: rgba(57,255,20,0.5);
-          box-shadow: 0 0 0 2px rgba(57,255,20,0.10);
+          border-color: var(--orb-blue);
+          box-shadow: 0 0 0 2px rgba(0,234,255,0.12);
         }
-        .field select option { background: #0a2e12; color: var(--white); }
+        .field select option { background: #0a0a1e; color: var(--white); }
 
+        /* ── ANIMATIONS ── */
         @keyframes vibrate {
           0%,100% { transform: translateX(0)     rotate(0deg);    }
           15%      { transform: translateX(-4px)  rotate(-1.2deg); }
@@ -503,107 +569,156 @@ function GoldApp() {
           90%      { transform: translateX(1.5px)  rotate(0.3deg);  }
         }
 
+        /* ── BUTTONS ── */
         .btn-neon {
           width: 100%; padding: 13px; border-radius: 8px;
-          border: none; cursor: pointer;
-          background: linear-gradient(90deg, #39FF14 0%, #00FF88 100%);
-          color: #050A0E;
+          border: 1px solid rgba(0,234,255,0.4); cursor: pointer;
+          background: linear-gradient(90deg, rgba(0,234,255,0.15) 0%, rgba(162,89,255,0.15) 100%);
+          color: var(--orb-blue);
           font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700;
           letter-spacing: 3px; text-transform: uppercase;
-          transition: background .2s, box-shadow .2s, transform .15s;
-          box-shadow: 0 0 16px rgba(57,255,20,0.45), 0 0 32px rgba(0,255,136,0.2);
+          transition: all .2s;
+          box-shadow: 0 0 16px rgba(0,234,255,0.2);
           -webkit-tap-highlight-color: transparent;
         }
         .btn-neon:hover:not(:disabled) {
-          background: linear-gradient(90deg, #6FFF45 0%, #39FF14 100%);
-          box-shadow: 0 0 28px rgba(57,255,20,0.7), 0 0 50px rgba(0,255,136,0.3);
-          transform: scale(1.02);
+          background: linear-gradient(90deg, rgba(0,234,255,0.25) 0%, rgba(162,89,255,0.25) 100%);
+          box-shadow: 0 0 28px rgba(0,234,255,0.4), 0 0 50px rgba(162,89,255,0.2);
+          transform: scale(1.02); color: #fff;
         }
         .btn-neon:active:not(:disabled) { transform: scale(0.97); animation: vibrate 0.32s ease; }
         .btn-neon:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        .btn-buy {
-          width: 100%; padding: 13px; border-radius: 8px;
+        .btn-orb {
+          width: 100%; padding: 13px; border-radius: 50px;
           border: none; cursor: pointer;
-          background: linear-gradient(90deg, #FFD700 0%, #C8960C 100%);
-          color: #050A0E;
+          background: var(--orb-gradient);
+          color: #fff;
           font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700;
           letter-spacing: 3px; text-transform: uppercase;
-          transition: background .2s, box-shadow .2s, transform .15s;
-          box-shadow: 0 0 16px rgba(255,215,0,0.4), 0 0 32px rgba(200,150,12,0.2);
+          transition: all .2s;
+          box-shadow: var(--orb-glow);
           -webkit-tap-highlight-color: transparent;
         }
-        .btn-buy:hover:not(:disabled) {
-          background: linear-gradient(90deg, #FFE566 0%, #FFD700 100%);
-          box-shadow: 0 0 28px rgba(255,215,0,0.6), 0 0 50px rgba(200,150,12,0.3);
-          transform: scale(1.02);
+        .btn-orb:hover:not(:disabled) {
+          box-shadow: 0 0 40px #a259ff, 0 0 80px #ff6ec7, 0 0 120px #00eaff;
+          transform: scale(1.03);
         }
-        .btn-buy:active:not(:disabled) { transform: scale(0.97); animation: vibrate 0.32s ease; }
-        .btn-buy:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn-orb:active:not(:disabled) { transform: scale(0.97); animation: vibrate 0.32s ease; }
+        .btn-orb:disabled { opacity: 0.3; cursor: not-allowed; }
 
         .btn-outline {
           width: 100%; padding: 11px; border-radius: 8px; margin-top: 10px;
-          border: 1px solid rgba(57,255,20,0.35); background: transparent;
+          border: 1px solid rgba(162,89,255,0.4); background: transparent;
           color: var(--white-dim); font-family: 'Orbitron', monospace;
           font-size: 10px; font-weight: 600; cursor: pointer;
           transition: all .2s; letter-spacing: 2px;
           -webkit-tap-highlight-color: transparent;
         }
-        .btn-outline:hover { border-color: rgba(57,255,20,0.55); color: var(--neon); background: var(--neon-faint); }
+        .btn-outline:hover { border-color: var(--orb-purple); color: var(--orb-purple); background: rgba(162,89,255,0.08); }
         .btn-outline:active { animation: vibrate 0.32s ease; transform: scale(0.97); }
 
+        /* ── STATUS ── */
         .status {
           margin-top: 12px; padding: 11px 14px; border-radius: 8px;
           font-size: 11px; font-weight: 700; text-align: center;
           font-family: 'Orbitron', monospace; letter-spacing: 2px;
         }
-        .status.pending { background: rgba(255,165,0,.08); color: #FFA500; border: 1px solid rgba(255,165,0,.25); }
-        .status.success { background: rgba(57,255,20,.08);  color: var(--neon); border: 1px solid rgba(57,255,20,.25); }
-        .status.error   { background: rgba(255,50,50,.08);  color: #FF5050;     border: 1px solid rgba(255,50,50,.25); }
+        .status.pending { background: rgba(255,179,71,.08);  color: var(--orb-orange); border: 1px solid rgba(255,179,71,.3); }
+        .status.success { background: rgba(0,234,255,.08);   color: var(--orb-blue);   border: 1px solid rgba(0,234,255,.3); }
+        .status.error   { background: rgba(255,50,50,.08);   color: #FF5050;            border: 1px solid rgba(255,50,50,.3); }
 
+        /* ── QUOTE ── */
         .quote-box {
           margin-top: 14px; padding: 14px; border-radius: 10px;
-          background: rgba(57,255,20,0.04); border: 1px solid var(--navy-border);
+          background: rgba(162,89,255,0.05); border: 1px solid rgba(162,89,255,0.2);
         }
         .quote-row {
           display: flex; justify-content: space-between; align-items: center;
-          padding: 7px 0; border-bottom: 1px solid rgba(57,255,20,0.07); font-size: 13px;
+          padding: 7px 0; border-bottom: 1px solid rgba(162,89,255,0.08); font-size: 13px;
         }
         .quote-row:last-child { border-bottom: none; }
         .quote-row span:first-child { color: var(--white-dim); }
-        .quote-row span:last-child  { color: var(--neon); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 11px; }
+        .quote-row span:last-child  { color: var(--orb-blue); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 11px; }
         .deposit-box {
           margin-top: 14px; padding: 14px; border-radius: 8px;
-          background: rgba(57,255,20,0.05); border: 1px solid rgba(57,255,20,0.25);
-          word-break: break-all; font-size: 11px; color: var(--neon);
+          background: rgba(0,234,255,0.05); border: 1px solid rgba(0,234,255,0.25);
+          word-break: break-all; font-size: 11px; color: var(--orb-blue);
           font-family: monospace; line-height: 1.7;
         }
 
+        /* ── INFO ROWS ── */
         .info-row {
           display: flex; justify-content: space-between;
-          padding: 11px 0; border-bottom: 1px solid rgba(57,255,20,0.07); font-size: 13px;
+          padding: 11px 0; border-bottom: 1px solid rgba(162,89,255,0.08); font-size: 13px;
         }
         .info-row:last-child { border-bottom: none; }
         .info-row .k { color: var(--white-faint); font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; }
-        .info-row .v { color: var(--neon); font-weight: 600; font-family: monospace; word-break: break-all; text-align: right; max-width: 62%; }
+        .info-row .v { color: var(--orb-blue); font-weight: 600; font-family: monospace; word-break: break-all; text-align: right; max-width: 62%; }
 
+        /* ── CONNECT PROMPT ── */
         .connect-prompt { text-align: center; padding: 46px 20px; }
         .connect-icon   { font-size: 48px; margin-bottom: 16px; }
         .connect-msg    { color: var(--white-dim); font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
 
+        /* ── FOOTER BANNER ── */
+        .footer-banner {
+          position: relative; z-index: 5;
+          margin: 0; padding: 0 16px 0;
+          background: rgba(5,5,18,0.0);
+        }
+        .footer-banner-inner {
+          display: flex; align-items: stretch; justify-content: center;
+          flex-wrap: wrap; gap: 0;
+          border: 1px solid rgba(162,89,255,0.3);
+          border-radius: 16px; overflow: hidden;
+          background: linear-gradient(135deg, rgba(10,8,30,0.97) 0%, rgba(5,5,18,0.98) 100%);
+          box-shadow: 0 0 40px rgba(162,89,255,0.1), var(--orb-glow);
+          position: relative;
+        }
+        .footer-banner-inner::before {
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+          background: var(--orb-gradient);
+        }
+        .banner-link {
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          gap: 4px; padding: 20px 28px; text-decoration: none;
+          transition: background .2s; flex: 1; min-width: 140px;
+          font-family: 'Orbitron', monospace;
+        }
+        .banner-link:hover { background: rgba(162,89,255,0.1); }
+        .banner-link span:first-of-type { font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+        .banner-sub { font-size: 9px; letter-spacing: 1px; opacity: 0.5; color: var(--white-faint) !important; font-weight: 400; }
+
+        .banner-mv    span:first-of-type { color: var(--orb-blue); }
+        .banner-tw    span:first-of-type { color: var(--orb-purple); }
+        .banner-dc    span:first-of-type { color: var(--orb-pink); }
+        .banner-contract span:first-of-type { color: var(--orb-yellow); }
+
+        .banner-mv:hover    { box-shadow: inset 0 0 30px rgba(0,234,255,0.06); }
+        .banner-tw:hover    { box-shadow: inset 0 0 30px rgba(162,89,255,0.06); }
+        .banner-dc:hover    { box-shadow: inset 0 0 30px rgba(255,110,199,0.06); }
+
+        .banner-divider {
+          width: 1px; background: rgba(162,89,255,0.2);
+          align-self: stretch; margin: 12px 0;
+        }
+
+        /* ── FOOTER ── */
         .footer {
-          position: relative; z-index: 5; text-align: center; padding: 20px;
-          border-top: 1px solid var(--navy-border);
+          position: relative; z-index: 5; text-align: center; padding: 16px 20px 20px;
           font-size: 9px; color: var(--white-faint); letter-spacing: 3px;
           font-family: 'Orbitron', monospace;
         }
-        .footer a { color: rgba(57,255,20,0.6); text-decoration: none; transition: color .2s; }
-        .footer a:hover { color: var(--neon); }
+        .footer a { color: rgba(162,89,255,0.6); text-decoration: none; transition: color .2s; }
+        .footer a:hover { color: var(--orb-purple); }
 
         @media (max-width: 600px) {
           .header { padding: 14px 16px; }
           .stats  { padding: 0 12px 28px; }
           .hero   { padding: 36px 16px 20px; }
+          .banner-link { padding: 16px 14px; min-width: 120px; }
+          .banner-divider { display: none; }
         }
       `}</style>
 
@@ -622,7 +737,7 @@ function GoldApp() {
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <div className="chain-badge">
               <span className="chain-dot" />
-              Monad
+              Monad · 143
             </div>
             <ConnectButton client={client} chain={MONAD_MAINNET} theme="dark" btnTitle="Connect" />
           </div>
@@ -643,7 +758,7 @@ function GoldApp() {
           {[
             { label: "Total Supply", value: fmt(totalSupply) },
             { label: "Your Balance", value: account ? fmt(balance) : "—" },
-            { label: "Network",      value: "Monad", small: true },
+            { label: "Network",      value: "Monad",  small: true },
             { label: "Chain ID",     value: "143" },
           ].map(function (s) {
             return (
@@ -664,7 +779,7 @@ function GoldApp() {
                 className={"tab-btn" + (tab === t ? " active" : "")}
                 onClick={function () { vibrate(); setTab(t); }}
               >
-                {t === "wallet" ? "WALLET" : t === "swap" ? "SWAP" : "INFO"}
+                {t === "wallet" ? "💼 WALLET" : t === "swap" ? "🔄 SWAP" : "ℹ INFO"}
               </button>
             );
           })}
@@ -695,20 +810,11 @@ function GoldApp() {
                   <div className="card-title">SEND {sym}</div>
                   <div className="field">
                     <label>Recipient Address</label>
-                    <input
-                      placeholder="0x..."
-                      value={transferTo}
-                      onChange={function (e) { setTransferTo(e.target.value); }}
-                    />
+                    <input placeholder="0x..." value={transferTo} onChange={function (e) { setTransferTo(e.target.value); }} />
                   </div>
                   <div className="field">
                     <label>Amount</label>
-                    <input
-                      type="number"
-                      placeholder="0.00"
-                      value={transferAmt}
-                      onChange={function (e) { setTransferAmt(e.target.value); }}
-                    />
+                    <input type="number" placeholder="0.00" value={transferAmt} onChange={function (e) { setTransferAmt(e.target.value); }} />
                   </div>
                   <button
                     className="btn-neon"
@@ -720,21 +826,16 @@ function GoldApp() {
 
                   {txStatus && (
                     <div className={"status " + txStatus}>
-                      {txStatus === "pending" && "TRANSACTION PENDING..."}
+                      {txStatus === "pending" && "⏳ TRANSACTION PENDING..."}
                       {txStatus === "success" && "✅ TRANSFER CONFIRMED"}
                       {txStatus === "error"   && "❌ TRANSACTION FAILED"}
                     </div>
                   )}
 
-                  {/* Buy with Card — uses BuyWidget (pay.thirdweb.com/buy is deprecated) */}
                   <BuyGoldWithCard account={account} sym={sym} />
 
-                  <a
-                    href={"https://monadscan.com/address/" + account.address}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="btn-outline">VIEW ON MONADSCAN</button>
+                  <a href={"https://monadscan.com/address/" + account.address} target="_blank" rel="noopener noreferrer">
+                    <button className="btn-outline">🔍 VIEW ON MONADSCAN</button>
                   </a>
                 </>
               )}
@@ -748,15 +849,13 @@ function GoldApp() {
               {!account ? (
                 <div className="connect-prompt">
                   <div className="connect-icon">🔗</div>
-                  <div className="connect-msg">
-                    Connect your wallet to swap any token for {sym} via NEAR Intents.
-                  </div>
+                  <div className="connect-msg">Connect your wallet to swap any token for {sym} via NEAR Intents.</div>
                   <ConnectButton client={client} chain={MONAD_MAINNET} theme="dark" btnTitle="Connect Wallet" />
                 </div>
               ) : (
                 <>
                   <div style={{ fontSize: 12, color: "var(--white-dim)", marginBottom: 18, lineHeight: 1.7 }}>
-                    Powered by <strong style={{ color: "var(--neon)" }}>NEAR Intents</strong> — swap ETH, BTC, SOL, USDC and more into {sym}.
+                    Powered by <strong style={{ color: "var(--orb-blue)" }}>NEAR Intents</strong> — swap ETH, BTC, SOL, USDC and more into {sym}.
                   </div>
                   <div className="field">
                     <label>From Token</label>
@@ -773,19 +872,10 @@ function GoldApp() {
                   </div>
                   <div className="field">
                     <label>Amount to Swap</label>
-                    <input
-                      type="number"
-                      placeholder="0.00"
-                      value={swapAmount}
-                      onChange={function (e) { setSwapAmount(e.target.value); }}
-                    />
+                    <input type="number" placeholder="0.00" value={swapAmount} onChange={function (e) { setSwapAmount(e.target.value); }} />
                   </div>
-                  <button
-                    className="btn-neon"
-                    onClick={handleGetQuote}
-                    disabled={!swapOrigin || !swapAmount || swapLoading}
-                  >
-                    {swapLoading ? "FETCHING QUOTE..." : "GET BEST QUOTE"}
+                  <button className="btn-neon" onClick={handleGetQuote} disabled={!swapOrigin || !swapAmount || swapLoading}>
+                    {swapLoading ? "FETCHING QUOTE..." : "⬡ GET BEST QUOTE"}
                   </button>
 
                   {swapError && <div className="status error">{swapError}</div>}
@@ -795,12 +885,7 @@ function GoldApp() {
                       <div className="quote-box">
                         <div className="quote-row">
                           <span>You Send</span>
-                          <span>
-                            {swapAmount}{" "}
-                            {swapTokens.find(function (t) { return t.assetId === swapOrigin; })
-                              ? swapTokens.find(function (t) { return t.assetId === swapOrigin; }).symbol
-                              : ""}
-                          </span>
+                          <span>{swapAmount} {swapTokens.find(function (t) { return t.assetId === swapOrigin; })?.symbol || ""}</span>
                         </div>
                         <div className="quote-row">
                           <span>You Receive (est.)</span>
@@ -813,9 +898,7 @@ function GoldApp() {
                       </div>
                       {swapQuote.depositAddress && (
                         <div className="deposit-box">
-                          <div style={{ color: "var(--neon)", marginBottom: 6, fontFamily: "Rajdhani", fontWeight: 700 }}>
-                            DEPOSIT ADDRESS:
-                          </div>
+                          <div style={{ color: "var(--orb-blue)", marginBottom: 6, fontFamily: "Rajdhani", fontWeight: 700 }}>DEPOSIT ADDRESS:</div>
                           {swapQuote.depositAddress}
                           <div style={{ marginTop: 8, color: "var(--white-dim)", fontFamily: "Rajdhani", fontSize: 11 }}>
                             Send your tokens here. NEAR Intents will complete the swap and deliver {sym} to your wallet.
@@ -846,13 +929,16 @@ function GoldApp() {
                   <button className="btn-neon" style={{ fontSize: 10 }}>MONADSCAN</button>
                 </a>
                 <a href={"https://monadvision.com/token/" + PROXY_ADDRESS} target="_blank" rel="noopener noreferrer" style={{ flex: 1 }}>
-                  <button className="btn-outline" style={{ marginTop: 0, fontSize: 10 }}>MONADVISIO</button>
+                  <button className="btn-orb" style={{ fontSize: 10 }}>MONADVISION</button>
                 </a>
               </div>
             </div>
           )}
 
         </div>
+
+        {/* ── FOOTER BANNER ── */}
+        <FooterBanner />
 
         {/* ── FOOTER ── */}
         <footer className="footer">
