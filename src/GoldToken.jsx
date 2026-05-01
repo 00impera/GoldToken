@@ -20,6 +20,8 @@ const NEAR_JWT      = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjIwMjUtMDEtM
 const PROXY_ADDRESS = "0x3E459BeA2A3Efab22Ce12358E672dD31A9594D34";
 const TREASURY      = "0x592B35c8917eD36c39Ef73D0F5e92B0173560b2e";
 
+const COIN_GIF = "https://raw.githubusercontent.com/00impera/GoldToken/98d4dbeb021f0f0cb0e2e078001411bc2e3aebeb/8b4e848e28648728e90708f39a1db70c.gif";
+
 const MONAD_MAINNET = defineChain({
   id: 143,
   name: "Monad",
@@ -90,69 +92,21 @@ function vibrate() {
   }
 }
 
-/* ─── GOLD COIN LOGO ──────────────────────────────────────────── */
+/* ─── COIN LOGO (GIF) ─────────────────────────────────────────── */
 function GoldCoinLogo({ size }) {
-  var s  = size || 48;
-  var cx = s / 2, cy = s / 2, r = s * 0.46;
-  var r2 = s * 0.40, r3 = s * 0.34, r4 = s * 0.24;
-  var fs = s * 0.30;
-
+  var s = size || 48;
   return (
-    <svg width={s} height={s} viewBox={"0 0 " + s + " " + s} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id={"cg" + s} cx="40%" cy="35%" r="65%">
-          <stop offset="0%"   stopColor="#FFE066" />
-          <stop offset="40%"  stopColor="#D4A017" />
-          <stop offset="75%"  stopColor="#B8860B" />
-          <stop offset="100%" stopColor="#7A5500" />
-        </radialGradient>
-        <radialGradient id={"ig" + s} cx="40%" cy="35%" r="60%">
-          <stop offset="0%"   stopColor="#00eaff" />
-          <stop offset="40%"  stopColor="#a259ff" />
-          <stop offset="80%"  stopColor="#ff6ec7" />
-          <stop offset="100%" stopColor="#B8860B" />
-        </radialGradient>
-        <filter id={"ng" + s} x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation={s * 0.04} result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-
-      <circle cx={cx + s * 0.02} cy={cy + s * 0.02} r={r} fill="rgba(0,0,0,0.45)" />
-      <circle cx={cx} cy={cy} r={r} fill={"url(#cg" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r - s * 0.01} fill="none" stroke="#a259ff" strokeWidth={s * 0.012} strokeDasharray={s * 0.025 + " " + s * 0.018} />
-      <circle cx={cx} cy={cy} r={r2} fill={"url(#ig" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#00eaff" strokeWidth={s * 0.05}  opacity="0.35" filter={"url(#ng" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r2 - s * 0.01} fill="none" stroke="#00eaff" strokeWidth={s * 0.025} opacity="1" />
-
-      {s >= 60 && (
-        <>
-          <line x1={cx - r3} y1={cy - r3 * 0.3} x2={cx + r3} y2={cy - r3 * 0.3} stroke="#a259ff" strokeWidth={s * 0.008} opacity="0.3" />
-          <line x1={cx - r3} y1={cy + r3 * 0.3} x2={cx + r3} y2={cy + r3 * 0.3} stroke="#a259ff" strokeWidth={s * 0.008} opacity="0.3" />
-          <line x1={cx - r3 * 0.3} y1={cy - r3}  x2={cx - r3 * 0.3} y2={cy + r3}  stroke="#ff6ec7" strokeWidth={s * 0.008} opacity="0.3" />
-          <line x1={cx + r3 * 0.3} y1={cy - r3}  x2={cx + r3 * 0.3} y2={cy + r3}  stroke="#ff6ec7" strokeWidth={s * 0.008} opacity="0.3" />
-          <circle cx={cx - r3 * 0.3} cy={cy - r3 * 0.3} r={s * 0.018} fill="#00eaff" opacity="0.6" />
-          <circle cx={cx + r3 * 0.3} cy={cy + r3 * 0.3} r={s * 0.018} fill="#ff6ec7" opacity="0.6" />
-        </>
-      )}
-
-      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#a259ff" strokeWidth={s * 0.018} opacity="0.4" filter={"url(#ng" + s + ")"} />
-      <circle cx={cx} cy={cy} r={r4} fill="none" stroke="#a259ff" strokeWidth={s * 0.012} opacity="0.7" />
-
-      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#00eaff" opacity="0.3" filter={"url(#ng" + s + ")"}>$</text>
-      <text x={cx} y={cy + fs * 0.38} textAnchor="middle" fontSize={fs} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#00eaff" opacity="0.97">$</text>
-
-      {s >= 80 && (
-        <>
-          <text x={cx} y={cy - r + s * 0.09}  textAnchor="middle" fontSize={s * 0.07}  fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#ffe066" letterSpacing={s * 0.015}>GOLD</text>
-          <text x={cx} y={cy + r - s * 0.04}  textAnchor="middle" fontSize={s * 0.065} fontWeight="900" fontFamily="Arial Black,sans-serif" fill="#ffe066" letterSpacing={s * 0.012}>TOKEN</text>
-          <circle cx={cx - r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#00eaff" opacity="0.9" />
-          <circle cx={cx + r * 0.52} cy={cy - r + s * 0.05} r={s * 0.018} fill="#ff6ec7" opacity="0.9" />
-        </>
-      )}
-
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(162,89,255,0.3)" strokeWidth={s * 0.03} />
-    </svg>
+    <img
+      src={COIN_GIF}
+      width={s}
+      height={s}
+      alt="Gold Token"
+      style={{
+        borderRadius: "50%",
+        objectFit: "cover",
+        display: "block",
+      }}
+    />
   );
 }
 
@@ -323,7 +277,6 @@ function GoldApp() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          /* ── ORB PALETTE ── */
           --orb-blue:     #00eaff;
           --orb-purple:   #a259ff;
           --orb-pink:     #ff6ec7;
@@ -333,7 +286,6 @@ function GoldApp() {
           --orb-gradient: linear-gradient(135deg, #00eaff 0%, #a259ff 40%, #ff6ec7 70%, #ffe066 100%);
           --orb-glow:     0 0 24px #00eaff, 0 0 48px #a259ff, 0 0 80px #ff6ec7;
 
-          /* ── BASE COLORS ── */
           --neon:         var(--orb-blue);
           --neon-bright:  #6FFF45;
           --neon-dim:     rgba(0,234,255,0.55);
@@ -369,7 +321,6 @@ function GoldApp() {
           background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(162,89,255,0.025) 2px, rgba(162,89,255,0.025) 4px);
         }
 
-        /* ── MATRIX PARTICLES ── */
         .matrix-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .mp { position: absolute; bottom: -10px; border-radius: 2px; animation: mrise linear infinite; }
         .mp0 { width: 2px; background: var(--orb-blue);   height: 16px; opacity: 0.6; }
@@ -384,7 +335,6 @@ function GoldApp() {
           100% { transform: translateY(-100vh); opacity: 0; }
         }
 
-        /* ── HEADER ── */
         .header {
           position: relative; z-index: 10;
           display: flex; align-items: center; justify-content: space-between;
@@ -395,6 +345,11 @@ function GoldApp() {
           box-shadow: 0 1px 0 rgba(0,234,255,0.1), 0 4px 30px rgba(162,89,255,0.12);
         }
         .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-img {
+          border-radius: 50%;
+          box-shadow: 0 0 18px rgba(0,234,255,0.5), 0 0 36px rgba(162,89,255,0.3);
+          display: block;
+        }
         .logo-text {
           font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700;
           background: var(--orb-gradient); -webkit-background-clip: text;
@@ -424,11 +379,13 @@ function GoldApp() {
           50%      { opacity: 0.35; box-shadow: none; }
         }
 
-        /* ── HERO ── */
         .hero { position: relative; z-index: 5; text-align: center; padding: 52px 20px 30px; }
-        .hero-coin { display: flex; justify-content: center; margin-bottom: 22px; }
-        .hero-coin svg {
-          filter: drop-shadow(0 0 28px rgba(0,234,255,0.6)) drop-shadow(0 0 12px rgba(162,89,255,0.5));
+        .hero-coin {
+          display: flex; justify-content: center; margin-bottom: 22px;
+        }
+        .hero-coin img {
+          border-radius: 50%;
+          box-shadow: 0 0 40px rgba(0,234,255,0.55), 0 0 80px rgba(162,89,255,0.4), 0 0 120px rgba(255,110,199,0.2);
           animation: coinFloat 4.5s ease-in-out infinite;
         }
         @keyframes coinFloat {
@@ -452,7 +409,6 @@ function GoldApp() {
           box-shadow: var(--orb-glow);
         }
 
-        /* ── STATS ── */
         .stats {
           position: relative; z-index: 5;
           display: flex; justify-content: center; flex-wrap: wrap;
@@ -483,7 +439,6 @@ function GoldApp() {
           margin-top: 6px;
         }
 
-        /* ── TABS ── */
         .tabs { position: relative; z-index: 5; display: flex; justify-content: center; gap: 4px; padding: 0 20px 22px; flex-wrap: wrap; }
         .tab-btn {
           padding: 9px 28px; border-radius: 6px;
@@ -499,7 +454,6 @@ function GoldApp() {
         }
         .tab-btn:not(.active):hover { border-color: rgba(162,89,255,0.5); color: var(--white); background: rgba(162,89,255,0.06); }
 
-        /* ── PANEL & CARD ── */
         .panel { position: relative; z-index: 5; max-width: 540px; margin: 0 auto; padding: 0 20px 40px; }
         .card {
           background: linear-gradient(135deg, rgba(10,8,30,0.95) 0%, rgba(5,5,18,0.98) 100%);
@@ -523,7 +477,6 @@ function GoldApp() {
         }
         .card-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(162,89,255,0.5), transparent); }
 
-        /* ── BALANCE ── */
         .balance-display {
           text-align: center; padding: 30px 20px;
           background: rgba(162,89,255,0.06);
@@ -540,7 +493,6 @@ function GoldApp() {
         .balance-symbol { font-size: 18px; color: var(--orb-purple); margin-left: 8px; font-family: 'Orbitron', monospace; }
         .balance-addr   { font-size: 11px; color: var(--white-faint); margin-top: 8px; letter-spacing: 1px; font-family: monospace; }
 
-        /* ── FIELDS ── */
         .field { margin-bottom: 14px; }
         .field label {
           display: block; font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
@@ -558,18 +510,16 @@ function GoldApp() {
         }
         .field select option { background: #0a0a1e; color: var(--white); }
 
-        /* ── ANIMATIONS ── */
         @keyframes vibrate {
-          0%,100% { transform: translateX(0)     rotate(0deg);    }
-          15%      { transform: translateX(-4px)  rotate(-1.2deg); }
-          30%      { transform: translateX(4px)   rotate(1.2deg);  }
-          45%      { transform: translateX(-3px)  rotate(-0.8deg); }
-          60%      { transform: translateX(3px)   rotate(0.8deg);  }
+          0%,100% { transform: translateX(0)      rotate(0deg);    }
+          15%      { transform: translateX(-4px)   rotate(-1.2deg); }
+          30%      { transform: translateX(4px)    rotate(1.2deg);  }
+          45%      { transform: translateX(-3px)   rotate(-0.8deg); }
+          60%      { transform: translateX(3px)    rotate(0.8deg);  }
           75%      { transform: translateX(-1.5px) rotate(-0.3deg); }
           90%      { transform: translateX(1.5px)  rotate(0.3deg);  }
         }
 
-        /* ── BUTTONS ── */
         .btn-neon {
           width: 100%; padding: 13px; border-radius: 8px;
           border: 1px solid rgba(0,234,255,0.4); cursor: pointer;
@@ -618,7 +568,6 @@ function GoldApp() {
         .btn-outline:hover { border-color: var(--orb-purple); color: var(--orb-purple); background: rgba(162,89,255,0.08); }
         .btn-outline:active { animation: vibrate 0.32s ease; transform: scale(0.97); }
 
-        /* ── STATUS ── */
         .status {
           margin-top: 12px; padding: 11px 14px; border-radius: 8px;
           font-size: 11px; font-weight: 700; text-align: center;
@@ -628,7 +577,6 @@ function GoldApp() {
         .status.success { background: rgba(0,234,255,.08);   color: var(--orb-blue);   border: 1px solid rgba(0,234,255,.3); }
         .status.error   { background: rgba(255,50,50,.08);   color: #FF5050;            border: 1px solid rgba(255,50,50,.3); }
 
-        /* ── QUOTE ── */
         .quote-box {
           margin-top: 14px; padding: 14px; border-radius: 10px;
           background: rgba(162,89,255,0.05); border: 1px solid rgba(162,89,255,0.2);
@@ -647,7 +595,6 @@ function GoldApp() {
           font-family: monospace; line-height: 1.7;
         }
 
-        /* ── INFO ROWS ── */
         .info-row {
           display: flex; justify-content: space-between;
           padding: 11px 0; border-bottom: 1px solid rgba(162,89,255,0.08); font-size: 13px;
@@ -656,16 +603,13 @@ function GoldApp() {
         .info-row .k { color: var(--white-faint); font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; }
         .info-row .v { color: var(--orb-blue); font-weight: 600; font-family: monospace; word-break: break-all; text-align: right; max-width: 62%; }
 
-        /* ── CONNECT PROMPT ── */
         .connect-prompt { text-align: center; padding: 46px 20px; }
         .connect-icon   { font-size: 48px; margin-bottom: 16px; }
         .connect-msg    { color: var(--white-dim); font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
 
-        /* ── FOOTER BANNER ── */
         .footer-banner {
           position: relative; z-index: 5;
           margin: 0; padding: 0 16px 0;
-          background: rgba(5,5,18,0.0);
         }
         .footer-banner-inner {
           display: flex; align-items: stretch; justify-content: center;
@@ -704,7 +648,6 @@ function GoldApp() {
           align-self: stretch; margin: 12px 0;
         }
 
-        /* ── FOOTER ── */
         .footer {
           position: relative; z-index: 5; text-align: center; padding: 16px 20px 20px;
           font-size: 9px; color: var(--white-faint); letter-spacing: 3px;
@@ -728,7 +671,14 @@ function GoldApp() {
         {/* ── HEADER ── */}
         <header className="header">
           <div className="logo">
-            <GoldCoinLogo size={48} />
+            {/* GIF coin logo — header size */}
+            <img
+              src={COIN_GIF}
+              width={48}
+              height={48}
+              alt="Gold Token"
+              className="logo-img"
+            />
             <div>
               <div className="logo-text">{tokenName || "GOLD"}</div>
               <div className="logo-sub">Monad Network</div>
@@ -746,7 +696,14 @@ function GoldApp() {
         {/* ── HERO ── */}
         <section className="hero">
           <div className="hero-coin">
-            <GoldCoinLogo size={108} />
+            {/* GIF coin logo — hero size */}
+            <img
+              src={COIN_GIF}
+              width={140}
+              height={140}
+              alt="Gold Token"
+              style={{ borderRadius: "50%", objectFit: "cover" }}
+            />
           </div>
           <div className="hero-title">${sym}</div>
           <div className="hero-sub">Digital Gold &middot; Monad Mainnet</div>
