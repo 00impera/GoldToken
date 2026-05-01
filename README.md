@@ -1,6 +1,6 @@
 # GoldToken
 
-![GoldToken Logo](./goldtoken-logo%20(1).png)
+![GoldToken Logo](https://raw.githubusercontent.com/00impera/GoldToken/98d4dbeb021f0f0cb0e2e078001411bc2e3aebeb/8b4e848e28648728e90708f39a1db70c.gif)
 
 A modern, neon-themed ERC-20 token dashboard for the Monad Mainnet, built with [thirdweb](https://thirdweb.com) and React.
 
